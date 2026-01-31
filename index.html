@@ -136,6 +136,8 @@
 
 	<script type="module">
 		window.MS_PER_REQUEST = 500;
+		window.CORS_PROXY = "https://api.allorigins.win/raw?url=";
+		
 		let trustAPI = false;
 
 		let going = false;
@@ -231,7 +233,7 @@
 				if (url.endsWith("&")) url = url.slice(0, -1);
 				if (url.endsWith("?")) url = url.slice(0, -1);
 
-				resp = await makeApiRequest(`https://corsproxy.io/?url=${encodeURIComponent(url)}`);
+				resp = await makeApiRequest(`${CORS_PROXY}${encodeURIComponent(url)}`);
 				if (resp) {
 					remixes.push(...resp);
 					for (const remix of resp) {
